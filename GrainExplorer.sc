@@ -36,7 +36,6 @@ GrainExplorer {
 		synthDef.add;
 
 		dirPath = path +/+ synthDef.name;
-		//"%.metadata_(\n%\n).add".format(synthDef.asCompileString, synthDef.metadata.asCompileString);
 
 		controls = synthDef.desc.controls;
 		usefulControls = controls.select {|controlName, i|
@@ -97,13 +96,13 @@ GrainExplorer {
 		};
 
 		// write definition
-		this.writeDefFile(
+		this.pr_writeDefFile(
 			"%.%".format(filePath, "scd")
 		);
 
 		// render sound
 		Routine{
-			this.renderSound(
+			this.pr_renderSound(
 				"%-%-%.%".format(filePath, format, sRate, headerFormat.toLower).postln,
 				params: params,
 				numChans: numChans,
