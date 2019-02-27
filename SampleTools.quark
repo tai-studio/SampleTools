@@ -1,0 +1,12 @@
+(
+    \name:           "SampleTools",
+    \path:           "SampleTools", // path relative to the root Quarks folder
+    \summary:        "Tools to render samples from within SuperCollider",
+    \author:         "Till Bovermann",
+    \organization:   "tai-studio.org",
+    \country:        "Germany",
+    \since:          "2019",
+    \url:            "http://tai-studio.org",
+    \version:        0.1,
+    \status:         "tested on OSX",
+)
