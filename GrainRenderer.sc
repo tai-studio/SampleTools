@@ -127,10 +127,10 @@ GrainRenderer {
 		// render sound
 		Routine{
 			this.pr_renderSound(
-				"%-%-%.%".format(filePaths[1], format, sRate, headerFormat.toLower).postln,
+				"%-%-%.%".format(filePaths[1], format, sRate, headerFormat.toLower),
 				params: params,
 				numChans: numChans,
-				dur: dur.postln,
+				dur: dur,
 				sRate: sRate,
 				headerFormat: headerFormat,
 				format: format,
@@ -152,7 +152,7 @@ GrainRenderer {
 				filename,
 				params: params,
 				numChans: numChans,
-				dur: dur.postln,
+				dur: dur,
 				sRate: sRate,
 				headerFormat: headerFormat,
 				format: format,
@@ -206,12 +206,12 @@ GrainRenderer {
 		score.score.printAll;
 
 		score.recordNRT(
-			// oscFilePath: nil,
-			outputFilePath: filename.postln,
+			oscFilePath: "%.osc".format(filename),
+			outputFilePath: filename,
 			// inputFilePath: nil,
-			sampleRate: sRate.postln,
+			sampleRate: sRate,
 			headerFormat: headerFormat,
-			sampleFormat: format.postln,
+			sampleFormat: format,
 			options: ServerOptions()
 			.numOutputBusChannels_(numChans)
 			.blockSize_(blockSize),
@@ -286,7 +286,7 @@ GrainRenderer {
 			synthDef.name.asCompileString, this.getValues.asCompileString
 		));
 		defFile.close;
-		filePath.postln;
+		// filePath.postln;
 	}
 
 	getValues {|noOut = false|
