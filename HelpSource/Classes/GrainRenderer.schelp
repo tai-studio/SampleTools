@@ -1,13 +1,13 @@
-TITLE:: GrainExplorer
-summary:: A GUI to explore and render one-shot sounds
+TITLE:: GrainRenderer
+summary:: conveniently render one-shot sounds
 categories:: Convenience
-related:: Classes/SynthDef,Classes/GrainRenderer
+related:: Classes/SynthDef,Classes/GrainExplorer
 
 2019 Till Bovermann
 http://tai-studio.org
 
 DESCRIPTION::
-A GUI to explore self-freeing link::Classes/SynthDef::s. It is possible to render the current setting to disk in various formats, e,g, to use the sounds in (hardware) drum samplers.
+A class to facilitate rendering of self-freeing link::Classes/SynthDef::s (I.e., "grains"). It is possible to render the current setting to disk in various formats, e,g, to use the sounds in (hardware) drum samplers.
 
 note::
 The code::Synthdef:: needs to have the following features for this class to work properly:
@@ -18,15 +18,6 @@ list::
 ::
 ::
 
-subsection:: keyboard and mouse shortcuts
-
-list::
-## code::<option>-<return>:: trigger sound (if in code-view, evaluate synthdef)
-## double-click on slider names toggles between slider and link::Classes/ControlSpec:: view.
-## code::win:: redraw GUI window (to add/remove unused/new sliders)
-## code::trig:: trigger sound
-## code::save:: render sound to disk and write description file
-::
 
 note::
 This class was tested on osx only but should work on other platforms, too.
@@ -37,7 +28,7 @@ Simple example:
 
 code::
 (
-GrainExplorer(
+GrainRenderer(
 	SynthDef(\bd, {|out = 0, freq = 67, sustain = 0.5, attack = 0.01, amp=0.1, startFreq = 1000|
 
 		var osc = SinOsc.ar(XLine.kr(startFreq, freq, attack), 0.5pi);
@@ -69,7 +60,7 @@ returns a new instance.
 
 
 argument:: synthDef
-the synthdef to edit, should include specs in its metadata
+the synthdef to edit.
 
 argument:: numChans
 the number of channels
@@ -86,19 +77,15 @@ INSTANCEMETHODS::
 
 PRIVATE:: pr_assembleSynthDefString, pr_writeDefFile, pr_syncMetaData, makeWindow, sliders, window, filePath, renderSound, getSliderValues, dirPath, init
 
-METHOD:: edit
-argument:: elHeight
-height of control elements
 
 METHOD:: renderAndWrite
-render sound and write code::.scd:: file.
+render sound and write code::.scd:: file to pre-defined path.
 
 METHOD:: play
-render sound.
-
+play synthdef.
 
 METHOD:: numChans
-how many channels to render. should be the same as in the code::SynthDef::.
+how many channels to render. must be reflected in the code::SynthDef:: as well
 
 METHOD:: path
 the path to render the sounds to.
@@ -108,7 +95,4 @@ the synthdef
 
 METHOD:: author
 the author
-
-METHOD:: font
-font used for the interface
 
